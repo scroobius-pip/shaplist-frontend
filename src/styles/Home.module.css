@@ -1,0 +1,30 @@
+.top {
+  display:grid;
+  column-gap:16px;
+  row-gap:16px;
+
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ 
+  
+  /* background-color: green; */
+}
+
+.container {
+  text-align:center;
+
+ /* display:flex; */
+ /* flex-grow:1; */
+ /* justify-content: center; */
+ max-width: 1200px;
+
+ margin: 0 auto;
+ padding-top: 5rem;
+ 
+}
+
+@media only screen and (min-width: 768px){
+  .container {
+    text-align: left;
+    /* min-width: 768px; */
+  }
+}
