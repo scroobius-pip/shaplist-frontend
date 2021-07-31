@@ -1,15 +1,36 @@
-import { Button, Pane,majorScale } from 'evergreen-ui'
+import { Button, Pane, majorScale } from 'evergreen-ui'
 import React from 'react'
 import { Facebook, Google, Twitter } from './Icon/index'
+import { GREY } from '../config/colors'
 
+interface Props {
+    onClick: () => any
+    children: [React.ReactElement, string]
+}
 
-const SocialLoginButton = () => {
+const SocialButton = ({ onClick, children }: Props) => {
+    return <Button onClick={onClick} backgroundColor={GREY} appearance='minimal' iconBefore={children[0]} size='large'>{children[1]}</Button>
+
+}
+
+const Socials = () => {
     return < Pane display='grid' gap={majorScale(1)}>
-    <Button backgroundColor='#F3F5F8' onClick={()=>{}} iconBefore={<Twitter size={majorScale(3)} />} size='large'>Login with Twitter</Button>
-    <Button onClick={()=>{}} iconBefore={<Facebook size={majorScale(3)}/>} size='large'>Login with Facebook</Button>
-    <Button   onClick={()=>{}} iconBefore={<Google size={majorScale(3)}/>} size='large'>Login with Google</Button>
-  
+        <SocialButton onClick={() => { }}>
+            <Twitter size={majorScale(3)} />
+            Login with Twitter
+        </SocialButton>
+
+        <SocialButton onClick={() => { }}>
+            <Facebook size={majorScale(3)} />
+            Login with Facebook
+        </SocialButton>
+
+        <SocialButton onClick={() => { }}>
+            <Google size={majorScale(3)} />
+            Login with Google
+        </SocialButton>
+
     </Pane>
 }
 
-export default SocialLoginButton 
+export default Socials
