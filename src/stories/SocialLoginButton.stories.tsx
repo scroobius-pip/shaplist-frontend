@@ -6,13 +6,7 @@ import SocialLoginButton from '../components/SocialLoginButton'
 export default {
     title: 'Social Login Button',
     component:SocialLoginButton
-} as ComponentMeta<typeof SocialLoginButton>
+} 
 
-const Template: ComponentStory<typeof SocialLoginButton> = (args) => <Button {...args} />;
+export const Default = ()=> <SocialLoginButton/>
 
-export const Facebook = Template.bind({})
-
-Facebook.args = {
-    text: '',
-icon:''
-}
