@@ -2,16 +2,20 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import illustration from '../public/storefront_illustration.jpg'
-import logo from '../public/storefront_shaplist_logo.svg'
-import { Button, Pane, Text, majorScale, Heading,Paragraph, ArrowRightIcon, UnorderedList, ListItem, TickIcon } from 'evergreen-ui'
+import { Button, Pane, Text, majorScale, Heading, Paragraph, ArrowRightIcon, UnorderedList, ListItem, TickIcon } from 'evergreen-ui'
 import React from 'react'
 import ComingSoonForm from '../components/ComingSoonForm'
+import { Logo } from '@components'
+
+
+
+
 
 export default function Home() {
   return (
     <>
       <Pane className={styles.container}>
-        <Pane marginBottom={majorScale(4)}><Image src={logo} /></Pane>
+        <Pane marginBottom={majorScale(4)}><Logo /></Pane>
         <Pane className={styles.top}>
           <Pane>
             <Heading size={900} >

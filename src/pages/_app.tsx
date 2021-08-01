@@ -3,6 +3,9 @@ import type { AppProps } from 'next/app'
 import Script from 'next/script'
 import Head from 'next/head'
 import {extractStyles} from 'evergreen-ui'
+import React from 'react'
+import { Layout } from '@components'
+
 function MyApp({ Component, pageProps }: AppProps) {
  
   return <>
@@ -49,8 +52,9 @@ fbq('track', 'PageView');`
 <meta name="msapplication-TileImage" content="/ms-icon-144x144.png"/>
 <meta name="theme-color" content="#ffffff"/>
   </Head>
- 
+ <Layout>
   <Component {...pageProps} />
+ </Layout>
   </>
 }
 export default MyApp

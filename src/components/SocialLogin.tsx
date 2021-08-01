@@ -1,7 +1,7 @@
+import { GREY } from 'config/colors'
 import { Button, Pane, majorScale } from 'evergreen-ui'
 import React from 'react'
 import { Facebook, Google, Twitter } from './Icon/index'
-import { GREY } from '../config/colors'
 
 interface Props {
     onClick: () => any

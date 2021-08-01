@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import SocialLoginButton from '../components/SocialLoginButton'
+import SocialLoginButton from '../components/SocialLogin'
 
 export default {
     title: 'Social Login Button',
