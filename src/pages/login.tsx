@@ -1,7 +1,7 @@
-import { SocialLogin, Logo } from '@components'
-import { Pa, Su } from 'components/Text'
-import { BLUE, WHITE } from 'config/colors'
+import { SocialLogin, Logo, Text } from 'components'
+import { PRIMARY, WHITE } from 'config/colors'
 import { Pane, Card, majorScale } from 'evergreen-ui'
+import React from 'react'
 
 const Page = () => {
     return <>
@@ -10,8 +10,8 @@ const Page = () => {
                 <Card background={WHITE} padding={majorScale(3)}>
                     <Pane marginBottom={majorScale(4)}> <Logo /></Pane>
                     <Pane marginBottom={majorScale(4)}>
-                        <Su>Log in</Su>
-                        <Pa>Continue to Shaplist Storefront</Pa>
+                        <Text.Su>Log in</Text.Su>
+                        <Text.Pa>Continue to Shaplist Storefront</Text.Pa>
                     </Pane>
                     <Pane>
                         <SocialLogin />
@@ -19,9 +19,9 @@ const Page = () => {
 
                 </Card>
                 <Pane marginTop={majorScale(6)}>
-                    <Su>
-                        <i>Everyone</i> already has an Instagram. Shaplist makes your business <b style={{ color: BLUE }}>stand out</b> from everyone else.
-                    </Su>
+                    <Text.Su>
+                        <i>Everyone</i> already has an Instagram. Shaplist makes your business <b style={{ color: PRIMARY }}>stand out</b> from everyone else.
+                    </Text.Su>
                 </Pane>
             </Pane>
 

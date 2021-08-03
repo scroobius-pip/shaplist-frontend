@@ -22,7 +22,7 @@ export default function Home() {
               <strong>Create a Web Page For Your Food Business</strong>
             </Heading>
             <Paragraph paddingTop={majorScale(2)} size={500} marginBottom={majorScale(2)}>
-              Create an effective catalog page for your food business in 20 minutes without any technical skills.
+              Create an effective catalog page for your food business in 10 minutes without any technical skills.
             </Paragraph>
             <ComingSoonForm />
             <Pane padding={majorScale(2)} marginTop={majorScale(2)}>
