@@ -18,7 +18,7 @@ const theme = {
 
 const Layout = ({ children }: Props) => {
     return <ThemeProvider value={theme}>
-        <Logo />
+        {/* <Logo /> */}
         {children}
     </ThemeProvider>
 }

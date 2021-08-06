@@ -2,10 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import illustration from '../public/storefront_illustration.jpg'
-import { Button, Pane, Text, majorScale, Heading, Paragraph, ArrowRightIcon, UnorderedList, ListItem, TickIcon } from 'evergreen-ui'
+import { Button, Pane, majorScale, Heading, Paragraph, ArrowRightIcon, UnorderedList, ListItem, TickIcon } from 'evergreen-ui'
 import React from 'react'
-import ComingSoonForm from '../components/ComingSoonForm'
-import { Logo } from '@components'
+import { Logo, Text, ComingSoonForm } from 'components'
 
 
 
@@ -19,12 +18,15 @@ export default function Home() {
         <Pane className={styles.top}>
           <Pane>
             <Heading size={900} >
-              <strong>Create a Web Page For Your Food Business</strong>
+              <strong>Create a Website For Your Food Business</strong>
             </Heading>
-            <Paragraph paddingTop={majorScale(2)} size={500} marginBottom={majorScale(2)}>
-              Create an effective catalog page for your food business in 10 minutes without any technical skills.
-            </Paragraph>
-            <ComingSoonForm />
+            <Pane paddingTop={majorScale(2)} marginBottom={majorScale(2)}>
+
+              <Text.Su >
+                Create an effective catalog page for your food business in 10 minutes without any technical skills.
+              </Text.Su>
+            </Pane>
+
             <Pane padding={majorScale(2)} marginTop={majorScale(2)}>
               <Heading textAlign={'left'}><strong>Shaplist allows you to:</strong></Heading>
               <UnorderedList size={500} textAlign={'left'} icon={TickIcon} iconColor='success'>
@@ -36,17 +38,39 @@ export default function Home() {
                 <ListItem><strong>Do all the above for free!</strong></ListItem>
               </UnorderedList>
             </Pane>
+            <Pane className={'form-desktop'}>
+              <ComingSoonForm />
+            </Pane>
           </Pane>
           <Image src={illustration} layout='responsive'></Image>
+          <Pane className={'form-mobile'}>
+            <ComingSoonForm />
+          </Pane>
         </Pane>
       </Pane>
-      {/* <style jsx global>
+      <style jsx global>
         {`
-    body {
-      background-color: #FFDDC7;
-    }
+@media (max-width: 768px) {
+.form-mobile {
+  display:block;
+}
+
+.form-desktop {
+  display:none;
+}
+}
+
+@media (min-width: 769px){
+  .form-mobile {
+    display:none;
+  }
+  
+  .form-desktop {
+    display:block;
+  }
+}
    `}
-      </style> */}
+      </style>
 
     </>
   )
