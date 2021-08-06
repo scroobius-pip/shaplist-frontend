@@ -15,7 +15,7 @@ const Page = () => {
         <Pane display='flex' alignItems='center' minHeight='100vh' flexDirection='column'>
             <Pane margin={'2vw'} maxWidth={500} textAlign='center'>
 
-                <Text.Su>Welcome to Shaplist Storefront, here's some things you can do:</Text.Su>
+                <Text.Su>Welcome to Shaplist Storefront, here&apos;s some things you can do:</Text.Su>
                 <Card background={WHITE} padding={majorScale(3)} marginTop={majorScale(3)}>
 
                     <Steps>
@@ -24,7 +24,7 @@ const Page = () => {
                             <Next />
                         </Pane>
                         <Pane>
-                            <Pane > <Text.PaStr>#2. Link your Shaplist page on your instagram, twitter and facebook profiles.</Text.PaStr></Pane>
+                            <Pane > <Text.PaStr>#2. Link your Shaplist page on your Instagram, Twitter and Facebook profiles.</Text.PaStr></Pane>
                             <Next />
                             <Back />
                         </Pane>

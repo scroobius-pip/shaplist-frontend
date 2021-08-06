@@ -42,7 +42,7 @@ export default function Home() {
               <ComingSoonForm />
             </Pane>
           </Pane>
-          <Image src={illustration} layout='responsive'></Image>
+          <Image alt='shaplist storefront' src={illustration} layout='responsive'></Image>
           <Pane className={'form-mobile'}>
             <ComingSoonForm />
           </Pane>

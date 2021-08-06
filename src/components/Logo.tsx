@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { majorScale } from 'evergreen-ui';
 
 const Logo = () => {
-    return (<Image src={logo} />);
+    return (<Image alt='shaplist logo' src={logo} />);
 }
 
 export default Logo
