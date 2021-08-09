@@ -1,8 +1,7 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import illustration from '../public/storefront_illustration.jpg'
-import { Button, Pane, majorScale, Heading, Paragraph, ArrowRightIcon, UnorderedList, ListItem, TickIcon } from 'evergreen-ui'
+import { Pane, majorScale, Heading, UnorderedList, ListItem, TickIcon } from 'evergreen-ui'
 import React from 'react'
 import { Logo, Text, ComingSoonForm } from 'components'
 
