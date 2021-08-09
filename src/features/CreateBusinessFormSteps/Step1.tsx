@@ -1,9 +1,11 @@
-import { Button, CaretDownIcon, majorScale, Pane, RadioGroup, SelectMenu, } from 'evergreen-ui';
+import { Button, CaretDownIcon, majorScale, Pane, RadioGroup, SelectMenu, Card } from 'evergreen-ui';
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form';
 import { Text } from 'components'
 import countries from 'utils/countries'
-import { PRIMARY } from 'config/colors';
+import { PRIMARY, WHITE } from 'config/colors';
+import { CheckBoxGroup } from 'components/Inputs';
+import nigerianStates from 'utils/nigerian-states';
 
 const countryNames = countries.map(country => country.value)
 const Step1 = () => {
@@ -17,7 +19,7 @@ const Step1 = () => {
                     <Text.Su>What Locations Does Your Business Support ?</Text.Su>
                     <Text.Pa marginTop={majorScale(1)}>This information will be used to restrict the locations customers can order from.</Text.Pa>
                 </Pane>
-                <Pane marginBottom={majorScale(3)}>
+                {/* <Pane marginBottom={majorScale(3)}>
                     <Pane marginBottom={majorScale(1)}>
                         <Text.PaStr >What Country is Your Business Located In ?</Text.PaStr>
                     </Pane>
@@ -44,8 +46,8 @@ const Step1 = () => {
                     />
 
 
-                </Pane>
-                <Pane marginBottom={majorScale(3)}>
+                </Pane> */}
+                {/* <Pane marginBottom={majorScale(3)}>
                     <Pane marginBottom={majorScale(1)}>
                         <Text.PaStr >Do you fulfill domestic and/or international orders ?</Text.PaStr>
                     </Pane>
@@ -64,14 +66,32 @@ const Step1 = () => {
                             />
                         }}
                     />
-                </Pane>
+                </Pane> */}
 
-                {getValues()?.country && <Pane marginBottom={majorScale(3)}>
+                <Pane marginBottom={majorScale(3)}>
                     <Pane marginBottom={majorScale(1)}>
-                        <Text.PaStr >What cities in <span style={{ color: PRIMARY }}>{getValues()?.country}</span> do you support ?</Text.PaStr>
+                        <Text.PaStr >What cities in <span style={{ color: PRIMARY }}>{'Nigeria'}</span> do you support shipping ?</Text.PaStr>
                     </Pane>
+                    <Card background={WHITE} padding={majorScale(2)} maxHeight={'70vh'} overflow='auto'>
 
-                </Pane>}
+                        <Controller
+                            name='cities'
+                            control={control}
+
+                            rules={{ required: true, }}
+                            render={({ field: { onChange, ref, name, value } }) => {
+                                return <CheckBoxGroup
+                                    options={nigerianStates}
+                                    onChange={(o) => {
+                                        console.log(o, value)
+                                        onChange(o)
+                                    }}
+                                    value={value}
+                                />
+                            }}
+                        />
+                    </Card>
+                </Pane>
             </Pane>
         </form>
     </>
