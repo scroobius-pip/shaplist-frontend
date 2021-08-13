@@ -8,13 +8,10 @@ interface Props {
 
 
 const CheckBoxGroup = ({ options, onChange, value = [] }: Props) => {
-    // const [selected, setSelected] = useState<string[]>([])
-    // useEffect(() => {
-    //     onChange(selected)
-    // }, [selected])
     return <>
         {options.map(option => {
-            return <Checkbox key={option} checked={option in value} label={option} onChange={(e) => {
+            return <Checkbox marginTop={0} key={option} value={option} checked={value.includes(option)} label={option} onChange={(e) => {
+
                 switch (e.target.checked) {
                     case true:
                         onChange(Array.from(new Set([...value, option])))

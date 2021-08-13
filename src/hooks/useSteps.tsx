@@ -21,22 +21,34 @@ const transitionStyles = {
     unmounted: { opacity: 0 }
 }
 
-function useSteps() {
-    const [currentStepIndex, setCurrentStepIndex] = useState(0)
-    let count: number
+function useSteps(startPage = 0) {
+    const [currentStepIndex, setCurrentStepIndex] = useState(startPage)
+
     const forward = () => setCurrentStepIndex((i) => i + 1)
     const back = () => setCurrentStepIndex((i) => i > 0 ? i - 1 : 0)
 
     const StepsContainer: React.FunctionComponent<StepsContainerProps> = ({ children }) => {
-        useEffect(() => { count = children.length }, [])
-        // const keyedChildren = children.map((c, i) => <React.Fragment key={i}>{c}</React.Fragment>)
-        return <Transition in={true} timeout={100} appear >
-            {state => (
-                <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
-                    {children[currentStepIndex]}
-                </div>
-            )}
-        </Transition>
+
+        const keyedChildren = children.map((c, i) => <React.Fragment key={i}>{c}</React.Fragment>)
+        return <>
+            {children.map((c, i) => {
+                return <Transition in={true} timeout={100} appear>
+                    {state => (
+                        <div style={{ ...defaultStyle, ...transitionStyles[state], display: i !== currentStepIndex ? 'none' : 'block' }}>
+                            {c}
+                        </div>
+                    )}
+                </Transition>
+            })}
+
+        </>
+        // return <Transition in={true} timeout={100} appear >
+        //     {state => (
+        //         <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
+        //             {children[currentStepIndex]}
+        //         </div>
+        //     )}
+        // </Transition>
     }
 
 
