@@ -1,7 +1,7 @@
 import { PaStr, Pa } from 'components/Text';
 import { PRIMARY } from 'config/colors';
 import { Button, majorScale, Pane, ArrowLeftIcon, ArrowRightIcon } from 'evergreen-ui'
-import { Step1, Step2 } from 'features/CreateBusinessFormSteps';
+import { Step1, Step2, Step3 } from 'features/CreateBusinessFormSteps';
 import useSteps from 'hooks'
 import React, { useState } from 'react'
 
@@ -30,9 +30,11 @@ const useStepFormState = (onSubmit: StepStateProps['onSubmit'], Step: StepStateP
 
 const Page = () => {
     type ButtonProps = { disabled?: boolean, onClick?: () => any }
-    const { Steps, back, forward, currentPage, } = useSteps()
+    const { Steps, back, forward, currentPage, stepCount } = useSteps(2)
     const Next = ({ disabled = false, onClick }: ButtonProps) => <Button disabled={disabled} onClick={onClick} appearance="primary" background={PRIMARY} width='100%' marginTop={majorScale(3)} size={'large'} iconAfter={ArrowRightIcon}>Next</Button>
+    const Finish = ({ disabled = false, onClick }: ButtonProps) => <Button disabled={disabled} onClick={onClick} appearance="primary" background={PRIMARY} width='100%' marginTop={majorScale(3)} size={'large'} iconAfter={ArrowRightIcon}>Complete Registration</Button>
     const Back = ({ disabled = false, onClick }: ButtonProps) => <Button onClick={onClick} appearance="minimal" width='100%' marginTop={majorScale(1)} size={'large'} iconBefore={ArrowLeftIcon}>Back</Button>
+
     const [stepsState, setStepsState] = useState<FormData>()
 
 
@@ -48,7 +50,7 @@ const Page = () => {
                 onBackward={back}
                 NextButton={Next}
                 BackButton={Back}
-            /> 
+            />
 
             <Step2
                 value={stepsState?.step2}
@@ -69,9 +71,28 @@ const Page = () => {
                 NextButton={Next}
                 BackButton={Back}
             />
+            <Step3
+                value={stepsState?.step3}
+                onForward={(data) => {
+                    setStepsState({
+                        ...stepsState,
+                        step3: data
+                    })
+                    // forward()
+                }}
+                onBackward={(data) => {
+                    setStepsState({
+                        ...stepsState,
+                        step3: data
+                    })
+                    back()
+                }}
+                NextButton={Finish}
+                BackButton={Back}
+            />
         </Steps>
         <Pane textAlign='center' marginTop={majorScale(2)}>
-            <Pa>Step {currentPage} of 3</Pa>
+            <Pa>Step {currentPage} of {stepCount}</Pa>
         </Pane>
         <style jsx global>
             {`

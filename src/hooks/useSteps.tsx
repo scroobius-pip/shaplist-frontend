@@ -23,13 +23,12 @@ const transitionStyles = {
 
 function useSteps(startPage = 0) {
     const [currentStepIndex, setCurrentStepIndex] = useState(startPage)
-
+    const [stepCount, setStepCount] = useState(0)
     const forward = () => setCurrentStepIndex((i) => i + 1)
     const back = () => setCurrentStepIndex((i) => i > 0 ? i - 1 : 0)
 
     const StepsContainer: React.FunctionComponent<StepsContainerProps> = ({ children }) => {
-
-        const keyedChildren = children.map((c, i) => <React.Fragment key={i}>{c}</React.Fragment>)
+        useEffect(() => { setStepCount(children.length) }, [])
         return <>
             {children.map((c, i) => {
                 return <Transition in={true} timeout={100} appear>
@@ -56,6 +55,7 @@ function useSteps(startPage = 0) {
         Steps: StepsContainer,
         back,
         forward,
+        stepCount,
         get currentPage() { return currentStepIndex + 1 },
 
     }

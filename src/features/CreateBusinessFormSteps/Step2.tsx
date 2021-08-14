@@ -1,9 +1,9 @@
-import { Pane, majorScale, TextInput, TextInputField, TextareaField, Label, Text, Paragraph, Small } from 'evergreen-ui'
-import React, { useEffect, useState } from 'react'
+import { Pane, majorScale, TextInputField, TextareaField } from 'evergreen-ui'
+import React, { } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { StepProps } from '.'
 import { CheckBoxGroup } from 'components/Inputs'
-import { PaStr, Pa, No, Su } from 'components/Text'
+import { Pa, Su } from 'components/Text'
 import CustomLabel from 'components/Inputs/Label'
 import { Icon } from 'components'
 
@@ -21,7 +21,7 @@ const Step2 = ({ onForward, NextButton, BackButton, onBackward, value }: StepPro
     const { register, formState: { isValid }, getValues, control } = useForm<Step2FormData>({
         mode: 'onChange',
         reValidateMode: 'onChange',
-        defaultValues: value ?? null
+        defaultValues: value ?? undefined
     })
 
 
