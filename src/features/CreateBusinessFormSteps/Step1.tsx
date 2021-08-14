@@ -7,6 +7,7 @@ import { PRIMARY, WHITE } from 'config/colors';
 import { CheckBoxGroup } from 'components/Inputs';
 import nigerianStates from 'utils/nigerian-states';
 import { StepProps } from '.';
+import { PaStr } from 'components/Text';
 
 interface Step1FormData {
     cities: string[]
@@ -26,6 +27,9 @@ const Step1 = ({ onForward, NextButton, BackButton, onBackward, value }: StepPro
                 <Text.PaStr >What cities in <span style={{ color: PRIMARY }}>{'Nigeria'}</span> do you support shipping ?</Text.PaStr>
             </Pane>
             <Card background={WHITE} padding={majorScale(2)} maxHeight={'70vh'} overflow='auto' boxShadow="0px 0px 10px 1px rgba(0,0,0,0.1)">
+                <Pane marginBottom={majorScale(1)}>
+                    <PaStr>Cities</PaStr>
+                </Pane>
                 <CheckBoxGroup
                     options={nigerianStates}
                     onChange={(value) => setFormState({ ...formState, cities: value })}

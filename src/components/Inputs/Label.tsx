@@ -2,8 +2,8 @@ import { Paragraph, Label } from 'evergreen-ui'
 import React from 'react'
 
 interface Props {
-    label: string
-    description: string
+    label?: string
+    description?: string
 }
 
 const CustomLabel = ({ label, description }: Props) => {

@@ -30,7 +30,7 @@ const useStepFormState = (onSubmit: StepStateProps['onSubmit'], Step: StepStateP
 
 const Page = () => {
     type ButtonProps = { disabled?: boolean, onClick?: () => any }
-    const { Steps, back, forward, currentPage, stepCount } = useSteps(2)
+    const { Steps, back, forward, currentPage, stepCount } = useSteps()
     const Next = ({ disabled = false, onClick }: ButtonProps) => <Button disabled={disabled} onClick={onClick} appearance="primary" background={PRIMARY} width='100%' marginTop={majorScale(3)} size={'large'} iconAfter={ArrowRightIcon}>Next</Button>
     const Finish = ({ disabled = false, onClick }: ButtonProps) => <Button disabled={disabled} onClick={onClick} appearance="primary" background={PRIMARY} width='100%' marginTop={majorScale(3)} size={'large'} iconAfter={ArrowRightIcon}>Complete Registration</Button>
     const Back = ({ disabled = false, onClick }: ButtonProps) => <Button onClick={onClick} appearance="minimal" width='100%' marginTop={majorScale(1)} size={'large'} iconBefore={ArrowLeftIcon}>Back</Button>
