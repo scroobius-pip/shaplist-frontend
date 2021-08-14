@@ -9,7 +9,7 @@ interface Typography {
     [name: string]: React.FunctionComponent<Props>
 }
 
-export const He = ({ children, ...props }: Props) => <Heading {...props} size={800}>{children}</Heading> //heading
+export const He = ({ children, ...props }: Props) => <Heading {...props} size={700}>{children}</Heading> //heading
 export const Su = ({ children, ...props }: Props) => <Heading  {...props} size={600}>{children}</Heading> //sub heading
 export const Pa = ({ children, ...props }: Props) => <Paragraph   {...props} size={400}>{children}</Paragraph> //paragraph
 export const PaStr = ({ children, ...props }: Props) => <Strong  {...props} size={400}>{children}</Strong> //paragraph strong

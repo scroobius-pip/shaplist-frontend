@@ -1,10 +1,10 @@
-import { PaStr, Pa } from 'components/Text';
+import { PaStr, Pa, He, Su, No } from 'components/Text';
 import { PRIMARY } from 'config/colors';
 import { Button, majorScale, Pane, ArrowLeftIcon, ArrowRightIcon } from 'evergreen-ui'
 import { Step1, Step2, Step3 } from 'features/CreateBusinessFormSteps';
 import useSteps from 'hooks'
 import React, { useState } from 'react'
-
+import Link from 'next/link'
 
 type FormData = {
     [_: string]: any
@@ -30,9 +30,9 @@ const useStepFormState = (onSubmit: StepStateProps['onSubmit'], Step: StepStateP
 
 const Page = () => {
     type ButtonProps = { disabled?: boolean, onClick?: () => any }
-    const { Steps, back, forward, currentPage, stepCount } = useSteps()
+    const { Steps, back, forward, currentPage, stepCount } = useSteps(3)
     const Next = ({ disabled = false, onClick }: ButtonProps) => <Button disabled={disabled} onClick={onClick} appearance="primary" background={PRIMARY} width='100%' marginTop={majorScale(3)} size={'large'} iconAfter={ArrowRightIcon}>Next</Button>
-    const Finish = ({ disabled = false, onClick }: ButtonProps) => <Button disabled={disabled} onClick={onClick} appearance="primary" background={PRIMARY} width='100%' marginTop={majorScale(3)} size={'large'} iconAfter={ArrowRightIcon}>Complete Registration</Button>
+    const Finish = ({ disabled = false, onClick }: ButtonProps) => <Button disabled={disabled} intent='success' onClick={onClick} appearance="primary" background={PRIMARY} width='100%' marginTop={majorScale(3)} size={'large'} iconAfter={ArrowRightIcon}>Complete Registration</Button>
     const Back = ({ disabled = false, onClick }: ButtonProps) => <Button onClick={onClick} appearance="minimal" width='100%' marginTop={majorScale(1)} size={'large'} iconBefore={ArrowLeftIcon}>Back</Button>
 
     const [stepsState, setStepsState] = useState<FormData>()
@@ -78,7 +78,7 @@ const Page = () => {
                         ...stepsState,
                         step3: data
                     })
-                    // forward()
+                    forward()
                 }}
                 onBackward={(data) => {
                     setStepsState({
@@ -90,6 +90,20 @@ const Page = () => {
                 NextButton={Finish}
                 BackButton={Back}
             />
+            <>
+                <Pane>
+                    <Pane textAlign='center'>
+                        <He>All Done! Let's Add Your First Product.</He>
+                        <No color='muted'>Or skip for now and add it later.</No>
+                    </Pane>
+                    <Link href='/dashboard/create-product'>
+                        <Button onClick={() => { }} appearance="primary" background={PRIMARY} width='100%' marginTop={majorScale(3)} size={'large'} iconAfter={ArrowRightIcon}>Continue</Button>
+                    </Link>
+                    <Link href='/dashboard'>
+                        <Button marginTop={majorScale(1)} appearance="default" size={'large'} width='100%'>Skip</Button>
+                    </Link>
+                </Pane>
+            </>
         </Steps>
         <Pane textAlign='center' marginTop={majorScale(2)}>
             <Pa>Step {currentPage} of {stepCount}</Pa>
