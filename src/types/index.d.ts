@@ -1,6 +1,5 @@
 interface Product {
     slug: string
-    unitsInCart: number
     imageUrl?: string
     price?: {
         currency: string

@@ -44,17 +44,17 @@ const displayTimeRemaining = (msEpochStart: number, msEpochExpiring: number) => 
 const getTimeRemaining = (msCurrentEpoch: number, msEpochStart: number, msEpochExpiring: number, timeStatus: ProductTimeStatus): number => {
     switch (timeStatus) {
         case 'pending':
-            return msEpochStart - msCurrentEpoch
+            return msEpochStart
         case 'ongoing':
-            return msEpochExpiring - msCurrentEpoch
+            return msEpochExpiring
         case 'ended':
-            return msCurrentEpoch - msEpochExpiring
+            return msEpochExpiring
 
     }
 }
 
 const formatRelativeTime = (msCurrentEpoch: number, msTime: number): string => {
-    return ago(new Date(msCurrentEpoch - msTime), 'hour')
+    return ago(new Date(msTime), 'hour')
 }
 
 

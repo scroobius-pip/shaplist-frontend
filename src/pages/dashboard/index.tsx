@@ -7,17 +7,81 @@ const products: Product[] = [
     {
         name: 'Irish Potato (10kg)',
         slug: '/irish-pototo-10kg',
-        unitsInCart: 0,
+
+        imageUrl: '',
+
+        // limitedTime: {
+        //     epochStart: 1629242464441,
+        //     epochExpiring: 1629242464441
+        // }
+    },
+
+    {
+        name: 'Meatpie',
+        slug: '/irish-pototo-10kg',
+
         imageUrl: '',
         limitedStock: {
             started: 20,
             remaining: 10
         },
-        limitedTime: {
-            epochStart: 1629242464441,
-            epochExpiring: 1629242464441
+
+    },
+    {
+        name: 'Meatpie',
+        slug: '/irish-pototo-10kg',
+
+        imageUrl: '',
+
+
+    },
+    {
+        name: 'Meatpie',
+        slug: '/irish-pototo-10kg',
+
+        imageUrl: '',
+        price: {
+            currency: 'NGN',
+            value: 350
         }
-    }
+
+    },
+    {
+        name: 'Clothes',
+        slug: '/irish-pototo-10kg',
+        price: {
+            currency: 'NGN',
+            value: 350
+        },
+
+        // imageUrl: '',
+        limitedStock: {
+            started: 20,
+            remaining: 8
+        },
+        // limitedTime: {
+        //     epochStart: 1629413432000,
+        //     epochExpiring: 1629499832000
+        // }
+    },
+    {
+        name: 'Clothes',
+        slug: '/irish-pototo-10kg',
+        price: {
+            currency: 'NGN',
+            value: 350
+        },
+
+        imageUrl: 'https://via.placeholder.com/600',
+        limitedStock: {
+            started: 20,
+            remaining: 10
+        },
+        // limitedTime: {
+        //     epochStart: 1629307368000,
+        //     epochExpiring: 1629413432000
+        // }
+    },
 ]
 
 const Page = () => {
@@ -52,7 +116,9 @@ const Page = () => {
             <Pane paddingY={majorScale(1)}>
                 <PaStr>Products</PaStr>
                 {products.map((product) => {
-                    return <ProductCard product={product} />
+                    return <Pane marginBottom={majorScale(1)}>
+                        <ProductCard product={product} />
+                    </Pane>
                 })}
             </Pane>
         </Pane>
