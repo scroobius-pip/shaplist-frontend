@@ -1,7 +1,7 @@
 import { Logo, Text } from 'components'
 import { BACKGROUND, WHITE, PRIMARY } from 'config/colors'
 import { Pane, Card, majorScale, Button, ChevronForwardIcon, ArrowRightIcon, ArrowLeftIcon, TickIcon } from 'evergreen-ui'
-import useSteps from 'hooks'
+import { useSteps } from 'hooks'
 
 
 

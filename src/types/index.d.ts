@@ -13,5 +13,11 @@ interface Product {
         epochStart: number
         epochExpiring: number
     }
+    groupBuying?: {
+        personCount: number
+        unitDescription: string
+    }
     name: string
+    category: string
+    subCategory: string
 }

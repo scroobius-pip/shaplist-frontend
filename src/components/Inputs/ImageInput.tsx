@@ -34,7 +34,7 @@ const ImagePreview = ({ url, loading, onEdit, onDelete }: ImagePreviewProps) => 
 
 
 const ImageInput = ({ onChange, value, defaultValue }: Props) => {
-  
+
     const [show, setShow] = useState(!!defaultValue?.length)
 
     if (show) {
@@ -48,7 +48,7 @@ const ImageInput = ({ onChange, value, defaultValue }: Props) => {
     }
 
 
-    return <Pane marginTop={majorScale(1)}>
+    return <Pane marginBottom={majorScale(3)}>
         <ImageUploading
             value={value}
             onChange={(files) => {
@@ -68,7 +68,7 @@ const ImageInput = ({ onChange, value, defaultValue }: Props) => {
                     </Pane>;
                 };
 
-                return <Pane>
+                return <Pane marginTop={majorScale(1)}>
                     <Pane>
                         {!imageList.length && <Button
                             iconAfter={PlusIcon}

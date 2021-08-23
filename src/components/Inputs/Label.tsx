@@ -2,7 +2,7 @@ import { Paragraph, Label } from 'evergreen-ui'
 import React from 'react'
 
 interface Props {
-    label?: string
+    label?: string | React.ReactElement
     description?: string
 }
 

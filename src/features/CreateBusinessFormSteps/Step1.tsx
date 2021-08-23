@@ -1,8 +1,6 @@
-import { Button, CaretDownIcon, majorScale, Pane, RadioGroup, SelectMenu, Card, ArrowRightIcon } from 'evergreen-ui';
+import { majorScale, Pane, Card } from 'evergreen-ui';
 import React, { useState } from 'react'
-import { useForm, Controller, Control } from 'react-hook-form';
 import { Text } from 'components'
-import countries from 'utils/countries'
 import { PRIMARY, WHITE } from 'config/colors';
 import { CheckBoxGroup } from 'components/Inputs';
 import nigerianStates from 'utils/nigerian-states';

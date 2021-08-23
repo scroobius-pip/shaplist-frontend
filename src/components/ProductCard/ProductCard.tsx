@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import illustration from '../public/storefront_illustration.jpg'
 import { Pa, He, PaStr, No } from 'components/Text'
-import { DANGER, DARK_GREY, GREY, ORANGE, PRIMARY, WHITE } from 'config/colors'
+import { BLACK, DANGER, DARK_GREY, GREY, ORANGE, PRIMARY, WHITE } from 'config/colors'
 import Link from 'next/link'
 import { PriceBox } from 'components'
 
@@ -28,16 +28,20 @@ interface DisplayCardProperty extends Product {
 }
 
 
+const ProductImage = ({ imageUrl, alt }: { imageUrl: string, alt: string }) => {
+    return <Pane position='relative' marginBottom={majorScale(2)} height={200} >
+        <Image
+            layout='fill'
+            alt={alt}
+            src={imageUrl}
+        />
+    </Pane>
+}
+
 const DisplayCard = ({ imageUrl, price, limitedStock, limitedTime, name, slug }: DisplayCardProperty) => {
     const unitsInCart = 0
     return <Card background={WHITE} border padding={majorScale(1)}>
-        {imageUrl && <Pane position='relative' marginBottom={majorScale(2)} height={200} >
-            <Image
-                layout='fill'
-                alt={name}
-                src={imageUrl}
-            />
-        </Pane>}
+        {imageUrl && <ProductImage imageUrl={imageUrl} alt={name} />}
         <Pane >
             <PaStr >{name}</PaStr>
             <Pane display='flex' marginTop={majorScale(1)} alignItems='center' width='100%' justifyContent='space-between'>
@@ -55,22 +59,12 @@ const DisplayCard = ({ imageUrl, price, limitedStock, limitedTime, name, slug }:
 
 const EditableCard = ({ name, limitedStock, limitedTime, price, onEditClicked, imageUrl }: DisplayCardProperty) => {
     return <Card background={WHITE} border padding={majorScale(1)}>
-        {imageUrl && <Pane width='100%' height={200}>
-
-            <Image
-                src={imageUrl}
-                objectFit='cover'
-                // height={'100%'}
-
-                // width={'100%'}
-                layout='fill'
-            />
-        </Pane>}
+        {imageUrl && <ProductImage imageUrl={imageUrl} alt={name} />}
         <Pane >
             <PaStr >{name}</PaStr>
             <PriceBox {...{ limitedStock, limitedTime, price }} />
             <Pane marginTop={majorScale(1)}>
-                <Button onClick={onEditClicked} width='100%' size='large' color='white' appearance='primary' iconBefore={EditIcon}>Edit</Button>
+                <Button onClick={onEditClicked} backgroundColor={GREY} width='100%' size='large' appearance='default' iconBefore={EditIcon}>Edit</Button>
             </Pane>
         </Pane>
     </Card>

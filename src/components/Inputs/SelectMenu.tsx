@@ -1,28 +1,25 @@
+import { Button, SelectMenu } from 'evergreen-ui'
 import React from 'react'
-import { CaretDownIcon, RadioGroup, Button, majorScale, Pane, SelectMenu, IconButton, SelectMenuItem } from 'evergreen-ui'
-import { UseFormRegister } from 'react-hook-form'
 
-
-interface Props<IOption = any> {
-    options: SelectMenuItem[]
-    children?: React.ReactElement
+type Value = string
+interface Props {
+    onChange: (value: Value) => any
+    value: Value
     title: string
-    heading?: React.ReactElement
-    register?: UseFormRegister<I>
+    options: Array<{ label: string, value: Value }>
 }
 
-const Select = ({ options, children, title }: Props) => {
-    return <>
-        <SelectMenu
+const _SelectMenu = ({ onChange, value, title, options }: Props) => {
 
-            width='100%'
-            title={title}
-            options={options}
+    return <SelectMenu
+        title={title}
+        options={options}
+        selected={value}
+        onSelect={({ value, label }) => onChange(value.toString())}
+    >
+        <Button>{value || title}</Button>
+    </SelectMenu>
 
-        >
-            {children}
-        </SelectMenu>
-    </>
 }
 
-export default Select
+export default _SelectMenu
