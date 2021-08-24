@@ -6,6 +6,7 @@ import { ProductCard } from 'components';
 import { useSideSheet } from 'hooks';
 import { EditProduct } from 'components/Modals';
 import { EditProductProps } from 'components/Modals/EditProduct';
+import AddProduct from 'components/Modals/AddProduct';
 const products: Product[] = [
     {
         name: 'Irish Potato (10kg)',
@@ -18,6 +19,7 @@ const products: Product[] = [
         //     epochExpiring: 1629242464441
         // }
         category: '',
+        subCategory: '',
         groupBuying: {
             personCount: 5,
             unitDescription: 'Half basket'
@@ -33,7 +35,8 @@ const products: Product[] = [
             started: 20,
             remaining: 10
         },
-        category: ''
+        category: '',
+        subCategory: ''
     },
     {
         name: 'Meatpie',
@@ -41,7 +44,8 @@ const products: Product[] = [
 
         imageUrl: '',
 
-        category: ''
+        category: '',
+        subCategory: ''
     },
     {
         name: 'Meatpie',
@@ -52,7 +56,8 @@ const products: Product[] = [
             currency: 'NGN',
             value: 350
         },
-        category: ''
+        category: '',
+        subCategory: ''
     },
     {
         name: 'Clothes',
@@ -71,7 +76,8 @@ const products: Product[] = [
         //     epochStart: 1629413432000,
         //     epochExpiring: 1629499832000
         // }
-        category: ''
+        category: '',
+        subCategory: ''
     },
     {
         name: 'Clothes',
@@ -90,15 +96,17 @@ const products: Product[] = [
         //     epochStart: 1629307368000,
         //     epochExpiring: 1629413432000
         // }
-        category: ''
+        category: '',
+        subCategory: ''
     },
 ]
 
 const Page = () => {
-    const { WrappedComponent, toggleVisible } = useSideSheet(EditProduct)
-
+    const { WrappedComponent: EditProductSideSheet, toggleVisible: toggleEditProduct } = useSideSheet(EditProduct)
+    const { WrappedComponent: AddProductSideSheet, toggleVisible: toggleAddProduct } = useSideSheet(AddProduct)
     return <Pane>
-        <WrappedComponent />
+        <EditProductSideSheet />
+        <AddProductSideSheet />
         <Pane height={150} background={'grey'}></Pane>
         <Pane padding={'2vw'}>
             <Pane paddingY={majorScale(2)}>
@@ -127,13 +135,13 @@ const Page = () => {
             <Pane paddingY={majorScale(1)}>
                 <He>Products</He>
             </Pane>
-            <Button size='large' appearance='primary' background={PRIMARY} width='100%' iconBefore={PlusIcon}>
+            <Button onClick={() => toggleAddProduct(true, { onSubmit: () => { console.log('submitted') } })} size='large' appearance='primary' background={PRIMARY} width='100%' iconBefore={PlusIcon}>
                 Add Product
             </Button>
             <Pane paddingY={majorScale(1)}>
                 {products.map((product) => {
                     return <Pane marginBottom={majorScale(1)}>
-                        <ProductCard editable={() => toggleVisible(true, { product })} product={product} />
+                        <ProductCard editable={() => toggleEditProduct(true, { product, onSubmit: () => console.log('submitted ' + product.name) })} product={product} />
                     </Pane>
                 })}
             </Pane>

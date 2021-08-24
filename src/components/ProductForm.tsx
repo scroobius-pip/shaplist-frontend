@@ -139,9 +139,10 @@ const ProductForm = (props: ProductFormProps) => {
         } ?? undefined
     })
     const category = watch('category')
+    const title = `${!props?.product ? 'Add' : 'Update'} Product`
 
     return <Pane >
-        <Su>Update product</Su>
+        <Su>{title}</Su>
         <Card padding={majorScale(3)} marginTop={majorScale(2)} background={WHITE}>
             <TextInputField
                 label='Name'
@@ -160,10 +161,10 @@ const ProductForm = (props: ProductFormProps) => {
             <GroupBuyFormComponent groupBuy={groupBuy} setGroupBuy={setGroupBuy} register={register}></GroupBuyFormComponent>
             <ScheduledAvailabilityFormComponent scheduledAvailability={scheduledAvailability} setScheduledAvailability={setScheduledAvailability} control={control}></ScheduledAvailabilityFormComponent>
 
-            <Button onClick={()=>{
+            <Button onClick={() => {
                 props.onSubmit()
             }} isLoading disabled={!isValid} size='large' appearance='primary' background={PRIMARY} width='100%' iconBefore={PlusIcon}>
-                Update Product
+                {title}
             </Button>
         </Card>
     </Pane>
