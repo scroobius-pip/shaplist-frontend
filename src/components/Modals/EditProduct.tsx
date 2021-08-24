@@ -1,8 +1,9 @@
-import { ImageInput } from 'components/Inputs'
+import IconButton from 'components/IconButton'
+import { ImageInput, TimePicker } from 'components/Inputs'
 import CustomLabel from 'components/Inputs/Label'
 import { Su } from 'components/Text'
-import { BACKGROUND, WHITE } from 'config/colors'
-import { Card, FilePicker, Label, majorScale, Pane, SelectField, Switch, TextareaField, TextInput, TextInputField } from 'evergreen-ui'
+import { BACKGROUND, PRIMARY, WHITE } from 'config/colors'
+import { AddIcon, Button, Card, Label, majorScale, Pane, PlusIcon, SelectField, Switch, TextareaField, TextInput, TextInputField } from 'evergreen-ui'
 import CategorySelector from 'features/CategorySelector'
 import React from 'react'
 import { useState } from 'react'
@@ -20,10 +21,118 @@ type EditProductState = Product & {
     subCategory: string
 }
 
+
+function GroupBuyFormComponent(props: any) {
+    return (<Pane>
+        <CustomLabel label={<Pane display='flex' alignItems='center'>
+            <Label marginRight={majorScale(1)}>Group Buying</Label>
+            <Switch onChange={e => props.setGroupBuy(e.target.checked)} checked={props.groupBuy} height={majorScale(3)} />
+        </Pane>} description='Enable group buying to allow people share the cost of buying one unit' />
+        <Pane opacity={!props.groupBuy && '30%'}>
+            <TextInputField disabled={!props.groupBuy} {...props.register('groupBuying.personCount')} label='Number of people in a group' description='How many people can a unit be shared amongst ?' marginY={majorScale(1)} />
+            <TextInputField disabled={!props.groupBuy} {...props.register('groupBuying.unitDescription')} description='Describe what one unit means.' label='Unit description' />
+        </Pane>
+
+    </Pane>);
+}
+
+
+
+function ScheduledAvailabilityFormComponent(props: any) {
+    return (<Pane marginBottom={majorScale(3)}>
+        <CustomLabel label={<Pane display='flex' alignItems='center'>
+            <Label marginRight={majorScale(1)}>Scheduled Availability</Label>
+            <Switch onChange={e => props.setScheduledAvailability(e.target.checked)} checked={props.scheduledAvailability} height={majorScale(3)} />
+        </Pane>} description='Schedule when you want a product to be available.' />
+        <Pane marginTop={majorScale(1)} pointerEvents={!props.scheduledAvailability && 'none'} opacity={!props.scheduledAvailability && '30%'}>
+            <Controller control={props.control} name='limitedTime.epochStart' render={({
+                field: {
+                    value,
+                    onChange
+                }
+            }) => {
+                return <TimePicker disabled={!props.scheduledAvailability} value={value ?? Date.now()} onChange={onChange} label='Order Start Time' description='Orders for this product will start at this time.' />;
+            }} />
+            <Controller control={props.control} name='limitedTime.epochExpiring' render={({
+                field: {
+                    value,
+                    onChange
+                }
+            }) => {
+                return <TimePicker disabled={!props.scheduledAvailability} value={value ?? Date.now()} onChange={onChange} label='Order End Time' description='Orders for this product will start at this time.' />;
+            }} />
+        </Pane>
+    </Pane>);
+}
+
+
+
+function ImageFormComponent(props: any) {
+    return (<Pane>
+        <CustomLabel label='Image (Optional)' description='Upload an image of your product - max 6MB' />
+        <Controller control={props.control} name='imageUrl' render={({
+            field: {
+                value,
+                onChange
+            }
+        }) => {
+            return <ImageInput defaultValue={props.imageUrl} value={value} onChange={url => {
+                // console.log(url);
+                onChange(url);
+            }} />;
+        }} />
+    </Pane>);
+}
+
+
+
+function CategoryFormComponent(props: any) {
+    return (<Pane>
+        <Controller control={props.control} name='category' render={({
+            field: {
+                value,
+                onChange
+            }
+        }) => {
+            return <SelectField value={value} onChange={e => {
+                onChange(e.target.value);
+            }} marginTop={majorScale(3)} marginBottom={majorScale(1)} label='Category (Optional)' description='Selecting a category makes it easier for customers to find your product'>
+                <option value='empty'>
+                    Pick a Category
+                </option>
+                {Object.keys(Categories).map(categoryId => {
+                    return <option key={categoryId} value={categoryId}>
+                        {Categories[categoryId].name}
+                    </option>;
+                })}
+                {props.category}
+            </SelectField>;
+        }} />
+
+
+        {props.category !== 'empty' && <Controller control={props.control} name='subCategory' render={({
+            field: {
+                value,
+                onChange
+            }
+        }) => {
+            return <SelectField // label='Sub Categories'
+                value={value} onChange={e => onChange(e.target.value)} description='Sub Category'>
+                {Object.keys(Categories?.[props.category].subcategories ?? {}).map(subCatId => {
+                    return <option key={subCatId} value={subCatId}>
+                        {Categories?.[props.category].subcategories[subCatId]}
+                    </option>;
+                })}
+            </SelectField>;
+        }} />}
+    </Pane>);
+}
+
+
 const EditProduct = ({ product: { imageUrl, ...product } }: EditProductProps) => {
     const [groupBuy, setGroupBuy] = useState(!!product?.groupBuying)
     const [scheduledAvailability, setScheduledAvailability] = useState(!!product?.limitedTime)
-    const { register, formState: { isValid }, watch, getValues, control } = useForm<EditProductState>({
+    const { register, watch, formState: { isValid }, control } = useForm<EditProductState>({
         mode: 'onChange', reValidateMode: 'onChange', defaultValues: {
             ...product,
             imageUrl: [],
@@ -31,7 +140,6 @@ const EditProduct = ({ product: { imageUrl, ...product } }: EditProductProps) =>
         } ?? undefined
     })
     const category = watch('category')
-    // const  = ['Pick Category', ...Object.values(Categories).map(c => c.name).sort((a, b) => a >= b ? 1 : -1)]
 
     return <Pane >
         <Su>Update product</Su>
@@ -48,126 +156,14 @@ const EditProduct = ({ product: { imageUrl, ...product } }: EditProductProps) =>
                 {...register('price.value', { required: true })
                 }
             />
-            <>
-                <CustomLabel
-                    label={
-                        <Pane display='flex' alignItems='center'>
-                            <Label marginRight={majorScale(1)}>Group Buying</Label>
-                            <Switch
-                                onChange={(e) => setGroupBuy(e.target.checked)}
-                                checked={groupBuy}
-                                height={majorScale(3)}
-                            />
-                        </Pane>
+            <ImageFormComponent imageUrl={imageUrl} control={control}></ImageFormComponent>
+            <CategoryFormComponent control={control} category={category}></CategoryFormComponent>
+            <GroupBuyFormComponent groupBuy={groupBuy} setGroupBuy={setGroupBuy} register={register}></GroupBuyFormComponent>
+            <ScheduledAvailabilityFormComponent scheduledAvailability={scheduledAvailability} setScheduledAvailability={setScheduledAvailability} control={control}></ScheduledAvailabilityFormComponent>
 
-                    }
-                    description='Enable group buying to allow people share the cost of buying one unit'
-                />
-                <Pane opacity={!groupBuy && '30%'}>
-                    <TextInputField
-                        disabled={!groupBuy}
-                        {...register('groupBuying.personCount')}
-                        label='Number of people in a group'
-                        description='How many people can a unit be shared amongst ?'
-                        marginY={majorScale(1)}
-                    />
-                    <TextInputField
-                        disabled={!groupBuy}
-                        {...register('groupBuying.unitDescription')}
-                        description='Describe what one unit means.'
-                        label='Unit description'
-                    />
-                </Pane>
-
-            </>
-            <>
-                <CustomLabel
-                    label={
-                        <Pane display='flex' alignItems='center'>
-                            <Label marginRight={majorScale(1)}>Scheduled Availability</Label>
-                            <Switch
-                                onChange={(e) => setScheduledAvailability(e.target.checked)}
-                                checked={scheduledAvailability}
-                                height={majorScale(3)}
-                            />
-                        </Pane>
-
-                    }
-                    description='Schedule when you want a product to be available.'
-                />
-                <Pane opacity={!scheduledAvailability && '30%'}>
-
-                </Pane>
-            </>
-            <>
-                <CustomLabel
-                    label='Image (Optional)'
-                    description='Upload an image of your product - max 6MB'
-                />
-                <Controller
-                    control={control}
-                    name='imageUrl'
-                    render={({ field: { value, onChange } }) => {
-                        return <ImageInput
-                            defaultValue={imageUrl}
-                            value={value}
-                            onChange={(url) => {
-                                console.log(url)
-                                onChange(url)
-                            }} />
-                    }}
-                />
-            </>
-            <>
-                <Controller
-                    control={control}
-                    name='category'
-                    render={({ field: { value, onChange } }) => {
-                        return <SelectField
-                            value={value}
-                            onChange={(e) => {
-                                onChange(e.target.value)
-                            }}
-                            marginTop={majorScale(3)}
-                            marginBottom={majorScale(1)}
-                            label='Category (Optional)'
-                            description='Selecting a category makes it easier for customers to find your product'
-                        >
-                            <option value='empty' >
-                                Pick Category
-                            </option>
-                            {Object.keys(Categories).map((categoryId) => {
-                                return <option key={categoryId} value={categoryId}>
-                                    {Categories[categoryId].name}
-                                </option>
-                            })}
-                            {
-                                category
-                            }
-                        </SelectField>
-                    }}
-                />
-
-
-                {category !== 'empty' && <Controller
-                    control={control}
-                    name='subCategory'
-                    render={({ field: { value, onChange } }) => {
-                        return <SelectField
-                            // label='Sub Categories'
-                            value={value}
-                            onChange={e => onChange(e.target.value)}
-                            description='Sub Category'
-                        >
-                            {Object.keys(Categories?.[category].subcategories ?? {}).map(subCatId => {
-                                return <option key={subCatId} value={subCatId}>
-                                    {Categories[category].subcategories[subCatId]}
-                                </option>
-                            })}
-                        </SelectField>
-                    }}
-                />}
-            </>
+            <Button isLoading disabled={!isValid} size='large' appearance='primary' background={PRIMARY} width='100%' iconBefore={PlusIcon}>
+                Update Product
+            </Button>
         </Card>
     </Pane>
 }
