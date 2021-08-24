@@ -10,6 +10,7 @@ interface Product {
         started: number
     }
     limitedTime?: {
+        
         epochStart: number
         epochExpiring: number
     }

@@ -1,6 +1,7 @@
 import { AddIcon, Button, EditIcon, majorScale, Pane, PlusIcon, Spinner, TrashIcon } from 'evergreen-ui'
 import React from 'react'
 import ImageUploading, { ImageListType, ImageType } from "react-images-uploading";
+import { Paragraph, Label } from 'evergreen-ui'
 
 import { useState } from 'react'
 import { No } from 'components/Text';
@@ -17,14 +18,17 @@ interface ImagePreviewProps {
     loading?: boolean
     onEdit?: (() => void) | undefined;
     onDelete: (() => void) | undefined;
+    name?: string
 }
-const ImagePreview = ({ url, loading, onEdit, onDelete }: ImagePreviewProps) => {
+
+const ImagePreview = ({ url, loading, onEdit, onDelete, name }: ImagePreviewProps) => {
     return <Pane paddingY={majorScale(1)} >
         <Pane>
             {loading ? <Spinner
 
             /> : <img style={{ aspectRatio: '1 / 1', objectFit: 'cover' }} width='100%' src={url} />}
         </Pane>
+        <Paragraph size={300} color="muted">{name}</Paragraph>
         <Pane display='flex' flexDirection='row'>
             {onEdit && <Button width='100%' onClick={onEdit} iconAfter={EditIcon} marginRight={majorScale(1)}>Update</Button>}
             <Button width='100%' intent='danger' iconAfter={TrashIcon} onClick={onDelete}>Remove</Button>
@@ -78,12 +82,16 @@ const ImageInput = ({ onChange, value, defaultValue }: Props) => {
                         <Pane
                         >
                             {(imageList ?? []).map((image, index) =>
-                                <ImagePreview
-                                    key={image.key}
-                                    url={image?.dataURL ?? ''}
-                                    onEdit={() => onImageUpdate(index)}
-                                    onDelete={() => onImageRemove(index)}
-                                />
+                                <>
+                                    <ImagePreview
+                                        key={image.key}
+                                        url={image?.dataURL ?? ''}
+                                        onEdit={() => onImageUpdate(index)}
+                                        name={image.file?.name}
+                                        onDelete={() => onImageRemove(index)}
+                                    />
+
+                                </>
                             )}
                         </Pane>
                     </Pane>

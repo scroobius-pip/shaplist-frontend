@@ -14,12 +14,14 @@ function useSideSheet<ComponentProps>(Component: (props: ComponentProps) => Reac
     }
     const WrappedComponent = () => <>
         <SideSheet isShown={isShown} onCloseComplete={() => setIsShown(false)}
+
             containerProps={{
                 width: '100%',
-                height: '100%'
+                height: '100%',
+
             }}
         >
-            <Pane padding={'2vw'} background={BACKGROUND} height='100%'>
+            <Pane overflow='auto' padding={'2vw'} background={BACKGROUND} height='100%'>
                 <Pane width='100%' marginBottom={majorScale(2)}>
                     <IconButton icon={CrossIcon} onClick={() => setIsShown(false)} />
                 </Pane>
