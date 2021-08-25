@@ -4,9 +4,9 @@ import React from 'react'
 import { BACKGROUND, PRIMARY, WHITE } from 'config/colors';
 import { ProductCard } from 'components';
 import { useSideSheet } from 'hooks';
-import { EditProduct } from 'components/Modals';
-import { EditProductProps } from 'components/Modals/EditProduct';
-import AddProduct from 'components/Modals/AddProduct';
+import { EditProduct } from 'features/Modals';
+import { EditProductProps } from 'features/Modals/EditProduct';
+import AddProduct from 'features/Modals/AddProduct';
 const products: Product[] = [
     {
         name: 'Irish Potato (10kg)',

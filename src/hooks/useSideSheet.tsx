@@ -14,7 +14,6 @@ function useSideSheet<ComponentProps>(Component: (props: ComponentProps) => Reac
     }
     const WrappedComponent = () => <>
         <SideSheet isShown={isShown} onCloseComplete={() => setIsShown(false)}
-
             containerProps={{
                 width: '100%',
                 height: '100%',

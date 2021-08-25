@@ -55,6 +55,7 @@ const Page = () => {
             <Step2
                 value={stepsState?.step2}
                 onForward={(data) => {
+                    console.log(data)
                     setStepsState({
                         ...stepsState,
                         step2: data
@@ -74,6 +75,7 @@ const Page = () => {
             <Step3
                 value={stepsState?.step3}
                 onForward={(data) => {
+                    console.log(stepsState)
                     setStepsState({
                         ...stepsState,
                         step3: data
