@@ -2,8 +2,8 @@ import { DANGER, DARK_GREY, ORANGE } from 'config/colors'
 import { Heading, majorScale, Pane, Strong, Text } from 'evergreen-ui'
 import React from 'react'
 import calculatePercentage from 'utils/calculateStockPercentage'
+import formatRelativeTime from 'utils/formatRelativeTime'
 import { He, Pa } from './Text'
-import ago from 's-ago'
 
 type Props = Pick<Product, 'price' | 'limitedTime' | 'limitedStock' | 'groupBuying'>
 type ProductTimeStatus = 'ongoing' | 'ended' | 'pending'
@@ -40,7 +40,7 @@ const displayTimeRemaining = (msEpochStart: number, msEpochExpiring: number) => 
     const msCurrentEpoch = getCurrentEpoch()
     const timeStatus = getProductTimeStatus(msCurrentEpoch, msEpochStart, msEpochExpiring)
     const msTimeRemaining = getTimeRemaining(msCurrentEpoch, msEpochStart, msEpochExpiring, timeStatus)
-    const timeString = formatRelativeTime(msCurrentEpoch, msTimeRemaining)
+    const timeString = formatRelativeTime(msTimeRemaining)
     return {
         ongoing: 'Ends',
         ended: 'Ended',
@@ -60,9 +60,6 @@ const getTimeRemaining = (msCurrentEpoch: number, msEpochStart: number, msEpochE
     }
 }
 
-const formatRelativeTime = (msCurrentEpoch: number, msTime: number): string => {
-    return ago(new Date(msTime), 'hour')
-}
 
 
 const getCurrentEpoch = () => {

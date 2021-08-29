@@ -51,7 +51,7 @@ const Page = () => {
                     background: ${BACKGROUND}
                 }
                 `
-            }
+            }v
         </style>
     </Pane>
 }

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from 'styles/Home.module.css'
 import illustration from '../public/storefront_illustration.jpg'
 import { Pane, majorScale, Heading, UnorderedList, ListItem, TickIcon } from 'evergreen-ui'
 import React from 'react'

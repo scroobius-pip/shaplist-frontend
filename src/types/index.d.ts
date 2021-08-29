@@ -36,3 +36,9 @@ interface Business {
     phone_no: string
     business_image_url: string
 }
+
+interface CartItem {
+    product: Product
+    epochExpiry?: number
+    quantity: number
+}

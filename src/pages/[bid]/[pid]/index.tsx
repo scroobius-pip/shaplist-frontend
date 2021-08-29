@@ -10,19 +10,22 @@ import productMocks from 'utils/productMocks'
 const Page = () => {
     return <>
 
-        <Card padding={majorScale(2)} backgroundColor={WHITE}>
-            <Su>Irish Potato (10kg)</Su>
-            <Pane marginTop={majorScale(2)}>
-                <ProductImage
-                    alt=''
-                    imageUrl='/food_background.jpg'
+        <Card className='product-grid' display='grid' gap={majorScale(2)} gridTemplateColumns='repeat(auto-fit,minmax(240px,1fr))' padding={majorScale(2)} backgroundColor={WHITE}>
+            <Pane>
+                <Su>Irish Potato (10kg)</Su>
+                <Pane marginTop={majorScale(2)}>
+                    <ProductImage
+                        alt=''
+                        imageUrl='/food_background.jpg'
 
-                />
+                    />
+
+                </Pane>
+            </Pane>
+            <Pane height='min-content' paddingTop={majorScale(2)} display='grid' gap={majorScale(4)}>
                 <Pa>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, vel veritatis hic illum sed quaerat reiciendis doloribus eaque quasi recusandae deserunt ullam quibusdam nulla ab!
                 </Pa>
-            </Pane>
-            <Pane>
                 <PriceBox
                     groupBuying={{ unitsRemainingInGroup: 2, unitDescription: '10kg', unitPerGroup: 10 }}
                     price={{ currency: 'NGN', value: 1500 }}
@@ -34,6 +37,9 @@ const Page = () => {
         </Card>
         <style jsx global>
             {`
+          .product-grid {
+              color:red;
+          }
             body {
                 background: ${BACKGROUND}
             }
