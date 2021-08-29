@@ -15,7 +15,8 @@ interface Product {
         epochExpiring: number
     }
     groupBuying?: {
-        personCount: number
+        unitsRemainingInGroup: number
+        unitPerGroup: number
         unitDescription: string
     }
     name: string

@@ -1,11 +1,11 @@
 import { DANGER, DARK_GREY, ORANGE } from 'config/colors'
-import { majorScale, Pane, Strong } from 'evergreen-ui'
+import { Heading, majorScale, Pane, Strong, Text } from 'evergreen-ui'
 import React from 'react'
 import calculatePercentage from 'utils/calculateStockPercentage'
-import { He } from './Text'
+import { He, Pa } from './Text'
 import ago from 's-ago'
 
-type Props = Pick<Product, 'price' | 'limitedTime' | 'limitedStock'>
+type Props = Pick<Product, 'price' | 'limitedTime' | 'limitedStock' | 'groupBuying'>
 type ProductTimeStatus = 'ongoing' | 'ended' | 'pending'
 
 
@@ -15,15 +15,22 @@ const ProgressBar = ({ percentage = 0 }) => {
     </Pane>
 }
 
-const PriceBox = ({ limitedTime, limitedStock, price }: Props) => {
+const PriceBox = ({ limitedTime, limitedStock, price, groupBuying }: Props) => {
     return <Pane width='100%'>
-        {price && <He>{price.currency} {price.value}</He>}
+        {price && <Pane>
+            <He>{price.currency} {price.value} {groupBuying && <Strong >Per Unit</Strong>}</He>
+
+        </Pane>}
+        {groupBuying && <Pane marginBottom={majorScale(1)}>
+            <Strong size={300}>1 unit = {groupBuying.unitDescription}</Strong>
+            <Text size={300} display='block' color="muted">{groupBuying.unitsRemainingInGroup} of {groupBuying.unitPerGroup} units remaining to start the next group buy</Text>
+        </Pane>}
         {limitedStock && <ProgressBar percentage={calculatePercentage(limitedStock.started, limitedStock.remaining)} />}
-        <Pane marginTop={majorScale(1)} display='flex' justifyContent='space-between'>
-            {limitedStock && <Strong size={300} color={DANGER}>{calculatePercentage(limitedStock.started, limitedStock.remaining)}% Claimed</Strong>}
-            {limitedTime && <Strong size={300} color={DANGER}>{
+        <Pane marginTop={majorScale(1)} display='flex' width='100%' justifyContent='space-between'>
+            {limitedStock && <Heading size={100} color={DANGER}>{calculatePercentage(limitedStock.started, limitedStock.remaining)}% Claimed</Heading>}
+            {limitedTime && <Heading size={100} color={DANGER}>{
                 displayTimeRemaining(limitedTime.epochStart, limitedTime.epochExpiring)
-            }</Strong>}
+            }</Heading>}
         </Pane>
     </Pane >
 }

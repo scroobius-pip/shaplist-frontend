@@ -50,7 +50,7 @@ function ScheduledAvailabilityFormComponent(props: any) {
                     onChange
                 }
             }) => {
-                return <TimePicker disabled={!props.scheduledAvailability} value={value ?? Date.now()} onChange={onChange} label='Order Start Time' description='Orders for this product will start at this time.' />;
+                return <TimePicker value={value ?? Date.now()} onChange={onChange} label='Order Start Time' description='Orders for this product will start at this time.' />;
             }} />
             <Controller control={props.control} name='limitedTime.epochExpiring' render={({
                 field: {
@@ -58,7 +58,7 @@ function ScheduledAvailabilityFormComponent(props: any) {
                     onChange
                 }
             }) => {
-                return <TimePicker disabled={!props.scheduledAvailability} value={value ?? Date.now()} onChange={onChange} label='Order End Time' description='Orders for this product will start at this time.' />;
+                return <TimePicker value={value ?? Date.now()} onChange={onChange} label='Order End Time' description='Orders for this product will start at this time.' />;
             }} />
         </Pane>
     </Pane>);

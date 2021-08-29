@@ -14,3 +14,21 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.product-grid {
+  display:flex;
+  width:auto;
+  margin-left: -10px;
+  margin-top: -10px;
+
+}
+
+.product-grid_column {
+  padding-left:10px;
+  
+  background-clip:padding-box;
+}
+
+.product-grid_column > * {
+  margin-top:10px;
+}

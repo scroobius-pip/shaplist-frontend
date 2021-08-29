@@ -2,104 +2,18 @@ import { Su, No, PaStr, Pa, He } from 'components/Text'
 import { Button, Pane, EyeOpenIcon, CogIcon, LinkIcon, TickIcon, majorScale, Card, Pill, StatusIndicator, minorScale, PlusIcon } from 'evergreen-ui'
 import React from 'react'
 import { BACKGROUND, PRIMARY, WHITE } from 'config/colors';
-import { ProductCard } from 'components';
+import { BusinessProfileImage, ProductCard } from 'components';
 import { useSideSheet } from 'hooks';
 import { EditProduct } from 'features/Modals';
 import { EditProductProps } from 'features/Modals/EditProduct';
+
 import AddProduct from 'features/Modals/AddProduct';
-const products: Product[] = [
-    {
-        name: 'Irish Potato (10kg)',
-        slug: '/irish-pototo-10kg',
+import Link from 'next/link';
+import productMocks from 'utils/productMocks';
 
-        imageUrl: '',
 
-        // limitedTime: {
-        //     epochStart: 1629242464441,
-        //     epochExpiring: 1629242464441
-        // }
-        category: '',
-        subCategory: '',
-        groupBuying: {
-            personCount: 5,
-            unitDescription: 'Half basket'
-        }
-    },
 
-    {
-        name: 'Meatpie',
-        slug: '/irish-pototo-10kg',
 
-        imageUrl: '',
-        limitedStock: {
-            started: 20,
-            remaining: 10
-        },
-        category: '',
-        subCategory: ''
-    },
-    {
-        name: 'Meatpie',
-        slug: '/irish-pototo-10kg',
-
-        imageUrl: '',
-
-        category: '',
-        subCategory: ''
-    },
-    {
-        name: 'Meatpie',
-        slug: '/irish-pototo-10kg',
-
-        imageUrl: '',
-        price: {
-            currency: 'NGN',
-            value: 350
-        },
-        category: '',
-        subCategory: ''
-    },
-    {
-        name: 'Clothes',
-        slug: '/irish-pototo-10kg',
-        price: {
-            currency: 'NGN',
-            value: 350
-        },
-
-        // imageUrl: '',
-        limitedStock: {
-            started: 20,
-            remaining: 8
-        },
-        // limitedTime: {
-        //     epochStart: 1629413432000,
-        //     epochExpiring: 1629499832000
-        // }
-        category: '',
-        subCategory: ''
-    },
-    {
-        name: 'Clothes',
-        slug: '/irish-pototo-10kg',
-        price: {
-            currency: 'NGN',
-            value: 350
-        },
-
-        imageUrl: 'https://via.placeholder.com/600',
-        limitedStock: {
-            started: 20,
-            remaining: 10
-        },
-        // limitedTime: {
-        //     epochStart: 1629307368000,
-        //     epochExpiring: 1629413432000
-        // }
-        category: '',
-        subCategory: ''
-    },
-]
 
 const Page = () => {
     const { WrappedComponent: EditProductSideSheet, toggleVisible: toggleEditProduct } = useSideSheet(EditProduct)
@@ -107,19 +21,23 @@ const Page = () => {
     return <Pane>
         <EditProductSideSheet />
         <AddProductSideSheet />
-        <Pane height={150} background={'grey'}></Pane>
+        <BusinessProfileImage url={'/food_background.jpg'} />
         <Pane padding={'2vw'}>
             <Pane paddingY={majorScale(2)}>
                 <PaStr>Good Morning,</PaStr>
                 <Su>Hero Cafe</Su>
             </Pane>
             <Pane >
-                <Button size='large' appearance='primary' background={PRIMARY} width='100%' iconBefore={EyeOpenIcon}>
-                    View Website
-                </Button>
-                <Button size='large' width='100%' iconBefore={CogIcon} marginTop={majorScale(1)}>
-                    Edit Profile Settings
-                </Button>
+                <Link href='b/sa'>
+                    <Button size='large' appearance='primary' background={PRIMARY} width='100%' iconBefore={EyeOpenIcon}>
+                        View Website
+                    </Button>
+                </Link>
+                <Link href='dashboard/update-business'>
+                    <Button size='large' width='100%' iconBefore={CogIcon} marginTop={majorScale(1)}>
+                        Edit Profile Settings
+                    </Button>
+                </Link>
                 <Button size='large' width='100%' iconBefore={LinkIcon} marginTop={majorScale(1)}>
                     Copy Website Url
                 </Button>
@@ -139,7 +57,7 @@ const Page = () => {
                 Add Product
             </Button>
             <Pane paddingY={majorScale(1)}>
-                {products.map((product) => {
+                {productMocks.map((product) => {
                     return <Pane marginBottom={majorScale(1)}>
                         <ProductCard editable={() => toggleEditProduct(true, { product, onSubmit: () => console.log('submitted ' + product.name) })} product={product} />
                     </Pane>
