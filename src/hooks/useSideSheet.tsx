@@ -31,6 +31,7 @@ function useSideSheet<ComponentProps>(Component: (props: ComponentProps) => Reac
 
     return {
         toggleVisible,
+        isVisible: isShown,
         WrappedComponent
     }
 }
