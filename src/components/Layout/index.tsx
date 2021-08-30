@@ -1,5 +1,7 @@
 import { Logo } from 'components'
-import { defaultTheme, Theme, ThemeProvider } from 'evergreen-ui'
+import NavBar from 'components/NavBar'
+import { BACKGROUND } from 'config/colors'
+import { defaultTheme, Pane, Theme, ThemeProvider, majorScale } from 'evergreen-ui'
 import React from 'react'
 
 interface Props {
@@ -12,14 +14,29 @@ const theme = {
         display: 'Poppins, sans-serif',
         ui: 'Poppins, sans-serif',
         mono: 'Poppins, sans-serif'
-    }
+    },
+
 
 }
 
 const Layout = ({ children }: Props) => {
     return <ThemeProvider value={theme}>
-        {/* <Logo /> */}
-        {children}
+        <Pane maxWidth={1200} margin='auto'>
+
+            <NavBar />
+            <Pane
+                marginTop={majorScale(6)} paddingX={'2vw'}
+            >
+                {children}
+            </Pane>
+        </Pane>
+        <style jsx global>
+            {`
+            body {
+                background: ${BACKGROUND}
+            }
+            `}
+        </style>
     </ThemeProvider>
 }
 

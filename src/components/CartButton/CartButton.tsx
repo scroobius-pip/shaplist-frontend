@@ -26,17 +26,17 @@ const CartButton = ({ product }: Props) => {
     const incrementCart = (id: string) => { }
     const decrementCart = (id: string) => { }
 
-    return <Pane>
+    return <Pane >
         {!unitsInCart ?
             <AddToCartButton onClick={() => incrementCart(product.slug)} /> :
-            <Pane border borderRadius={majorScale(2)} display='grid' gap={majorScale(1)} textAlign='center'>
+            <Pane padding={majorScale(1)} border borderRadius={majorScale(1)} display='grid' gap={majorScale(1)} textAlign='center'>
                 <ProductQuantityChanger
                     onSubtract={() => decrementCart(product.slug)}
                     onAdd={() => incrementCart(product.slug)}
                     units={unitsInCart} />
                 <Pa color='muted'>Added To Cart</Pa>
                 {epochExpiry && <PaStr>Checkout <PaStr color={ORANGE}>{formatRelativeTime(epochExpiry)}</PaStr> to secure your order</PaStr>}
-                <Button width='100%' onClick={() => { }} size='large' color='white' backgroundColor={PRIMARY} appearance='primary' iconAfter={ShoppingCartIcon}>Checkout</Button>
+                <Button borderRadius={majorScale(1)} width='100%' onClick={() => { }} size='large' color='white' backgroundColor={PRIMARY} appearance='primary' iconAfter={ShoppingCartIcon}>Checkout</Button>
 
             </Pane>
 

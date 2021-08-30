@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Page = () => {
-    return <Pane maxWidth={1200} marginX='auto'>
+    return <Pane>
         <BusinessProfileImage url='/food_background.jpg' />
         <Pane background={WHITE} padding={majorScale(2)} boxShadow="0px 0px 10px 1px rgba(0,0,0,0.1)">
             <He>Shap Cafe</He>
@@ -44,15 +44,7 @@ const Page = () => {
                 })}
             </ProductGrid>
         </Pane>
-        <style jsx global>
-            {
-                `
-                body {
-                    background: ${BACKGROUND}
-                }
-                `
-            }v
-        </style>
+
     </Pane>
 }
 

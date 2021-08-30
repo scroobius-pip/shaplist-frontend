@@ -10,7 +10,7 @@ import productMocks from 'utils/productMocks'
 const Page = () => {
     return <>
 
-        <Card className='product-grid' display='grid' gap={majorScale(2)} gridTemplateColumns='repeat(auto-fit,minmax(240px,1fr))' padding={majorScale(2)} backgroundColor={WHITE}>
+        <Card className='product-grid' display='grid' gap={majorScale(2)} gridTemplateColumns='repeat(auto-fit,minmax(240px,1fr))' padding={majorScale(4)} backgroundColor={WHITE}>
             <Pane>
                 <Su>Irish Potato (10kg)</Su>
                 <Pane marginTop={majorScale(2)}>

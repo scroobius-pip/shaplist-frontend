@@ -5,7 +5,7 @@ import React from 'react'
 
 const Page = () => {
     return <>
-        <Pane display='flex' justifyContent='center' alignItems='center' minHeight='100vh' flexDirection='column'>
+        <Pane display='flex' marginTop={'-10vh'} justifyContent='center' alignItems='center' minHeight='100vh' flexDirection='column'>
             <Pane margin='2vw' maxWidth={400}>
                 <Card background={WHITE} padding={majorScale(3)}>
                     <Pane marginBottom={majorScale(4)}> <Logo /></Pane>
