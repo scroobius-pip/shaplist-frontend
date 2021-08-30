@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { PriceBox } from 'components'
 import ProductImage from 'components/ProductImage'
 import { AddToCartButton } from 'components/CartButton'
+import UnitQuantityButton from './UnitQuantityButton'
 
 
 
@@ -19,13 +20,6 @@ interface DisplayCardProperty extends Product {
 }
 
 
-const UnitIncrementDecrementButton = ({ value = 1 }) => {
-    return <Pane background={GREY} display='flex' alignItems='center'>
-        <IconButton appearance={'minimal'} icon={MinusIcon} />
-        <Pane marginX={majorScale(1)}> <Pa>{value}</Pa></Pane>
-        <IconButton appearance={'minimal'} icon={AddIcon} />
-    </Pane>
-}
 
 
 
@@ -34,14 +28,14 @@ const DisplayCard = ({ imageUrl, price, limitedStock, limitedTime, name, slug }:
     const unitsInCart = 0
     return <>
         <Link href={`${slug}`}>
-            <Card height='100%' background={WHITE} border padding={majorScale(1)}>
+            <Card height='100%' background={WHITE} border borderRadius={majorScale(1)} padding={majorScale(1)}>
                 {imageUrl && <ProductImage imageUrl={imageUrl} alt={name} />}
                 <Pane >
                     <PaStr >{name}</PaStr>
                     <Pane display='flex' marginTop={majorScale(1)} alignItems='center' width='100%' justifyContent='space-between'>
                         <PriceBox {...{ limitedTime, limitedStock, price }} />
                         <Pane paddingLeft={majorScale(1)}>
-                            {unitsInCart > 0 ? <UnitIncrementDecrementButton value={unitsInCart} /> :
+                            {unitsInCart > 0 ? <UnitQuantityButton value={unitsInCart} /> :
                                 <AddToCartButton onClick={() => { }} />}
                         </Pane>
                     </Pane>

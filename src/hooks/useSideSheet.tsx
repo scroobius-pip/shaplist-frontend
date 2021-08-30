@@ -19,6 +19,7 @@ function useSideSheet<ComponentProps>(Component: (props: ComponentProps) => Reac
                 height: '100%',
 
             }}
+            
         >
             <Pane overflow='auto' padding={'2vw'} background={BACKGROUND} height='100%'>
                 <Pane width='100%' marginBottom={majorScale(2)}>

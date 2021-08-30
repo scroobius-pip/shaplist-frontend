@@ -3,7 +3,7 @@ import { Heading, majorScale, Pane, Strong, Text } from 'evergreen-ui'
 import React from 'react'
 import calculatePercentage from 'utils/calculateStockPercentage'
 import formatRelativeTime from 'utils/formatRelativeTime'
-import { He, Pa } from './Text'
+import { He, Pa, Su } from './Text'
 
 type Props = Pick<Product, 'price' | 'limitedTime' | 'limitedStock' | 'groupBuying'>
 type ProductTimeStatus = 'ongoing' | 'ended' | 'pending'
@@ -18,7 +18,7 @@ const ProgressBar = ({ percentage = 0 }) => {
 const PriceBox = ({ limitedTime, limitedStock, price, groupBuying }: Props) => {
     return <Pane width='100%'>
         {price && <Pane>
-            <He>{price.currency} {price.value} {groupBuying && <Strong >Per Unit</Strong>}</He>
+            <Su>{price.currency} {price.value} {groupBuying && <Strong >Per Unit</Strong>}</Su>
 
         </Pane>}
         {groupBuying && <Pane marginBottom={majorScale(1)}>

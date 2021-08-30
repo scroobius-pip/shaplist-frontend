@@ -15,7 +15,10 @@ interface Props {
 const Page = () => {
     return <Pane>
         <BusinessProfileImage url='/food_background.jpg' />
-        <Pane background={WHITE} padding={majorScale(2)} boxShadow="0px 0px 10px 1px rgba(0,0,0,0.1)">
+        <Pane
+            borderBottomLeftRadius={majorScale(1)}
+            borderBottomRightRadius={majorScale(1)}
+            background={WHITE} padding={majorScale(2)} boxShadow="0px 0px 10px 1px rgba(0,0,0,0.1)">
             <He>Shap Cafe</He>
             <PaStr>Lagos</PaStr>
             <Pane marginTop={majorScale(2)}>
@@ -27,13 +30,13 @@ const Page = () => {
                     <Icon.Twitter size={majorScale(3)} />
                     <Icon.Facebook size={majorScale(3)} />
                 </Pane>
-                <Pane marginTop={majorScale(3)}>
+                {/* <Pane marginTop={majorScale(3)}>
                     <Link href='#'>
                         <Button size='large' appearance='primary' background={PRIMARY} width='100%'>
                             Contact Us
                         </Button>
                     </Link>
-                </Pane>
+                </Pane> */}
             </Pane>
         </Pane>
         <Pane marginTop={majorScale(3)} >

@@ -11,7 +11,7 @@ import Categories from 'utils/categories'
 
 export interface ProductFormProps {
     product?: Product
-    onSubmit: () => any
+    onSubmit: (product: ProductFormState) => any
 }
 
 type ProductFormState = Product & {
@@ -162,7 +162,7 @@ const ProductForm = (props: ProductFormProps) => {
             <ScheduledAvailabilityFormComponent scheduledAvailability={scheduledAvailability} setScheduledAvailability={setScheduledAvailability} control={control}></ScheduledAvailabilityFormComponent>
 
             <Button onClick={() => {
-                props.onSubmit()
+                // props.onSubmit()
             }} isLoading disabled={!isValid} size='large' appearance='primary' background={PRIMARY} width='100%' iconBefore={PlusIcon}>
                 {title}
             </Button>
