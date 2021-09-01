@@ -6,6 +6,8 @@ import { Layout } from 'components'
 
 function MyApp({ Component, pageProps }: AppProps) {
 
+
+
   return <>
     <Head>
 
@@ -53,7 +55,7 @@ fbq('track', 'PageView');`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
       </style>
     </Head>
-    <Layout>
+    <Layout showNav={(Component as any)?.showNav} showFooter={(Component as any)?.showFooter}>
       <Component {...pageProps} />
     </Layout>
   </>

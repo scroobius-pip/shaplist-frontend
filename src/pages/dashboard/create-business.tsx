@@ -120,5 +120,6 @@ const Page = () => {
     </Pane>
 }
 
+Page.showFooter = false
 
 export default Page

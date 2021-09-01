@@ -19,7 +19,12 @@ const Page = () => {
             borderBottomLeftRadius={majorScale(1)}
             borderBottomRightRadius={majorScale(1)}
             background={WHITE} padding={majorScale(2)} boxShadow="0px 0px 10px 1px rgba(0,0,0,0.1)">
-            <He>Shap Cafe</He>
+            <Pane display='flex' gap={majorScale(2)} alignItems='center'>
+                <He>Shap Cafe</He>
+                <Link href='tel:+2347085243291'>
+                    <Button size='small'>Contact</Button>
+                </Link>
+            </Pane>
             <PaStr>Lagos</PaStr>
             <Pane marginTop={majorScale(2)}>
                 <Pa>

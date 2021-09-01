@@ -4,12 +4,13 @@ import illustration from '../public/storefront_illustration.jpg'
 import { Pane, majorScale, Heading, UnorderedList, ListItem, TickIcon } from 'evergreen-ui'
 import React from 'react'
 import { Logo, Text, ComingSoonForm } from 'components'
+import { BACKGROUND } from 'config/colors'
 
 
 
 
 
-export default function Home() {
+const Page = () => {
   return (
     <>
       <Pane className={styles.container}>
@@ -49,6 +50,9 @@ export default function Home() {
       </Pane>
       <style jsx global>
         {`
+        body {
+          background-color:${'white'};
+        }
 @media (max-width: 768px) {
 .form-mobile {
   display:block;
@@ -74,3 +78,8 @@ export default function Home() {
     </>
   )
 }
+
+Page.showNav = false
+Page.showFooter = false
+
+export default Page

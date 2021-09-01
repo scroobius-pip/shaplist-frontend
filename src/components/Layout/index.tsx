@@ -6,8 +6,11 @@ import React, { useState } from 'react'
 import CartVisibilityContext from 'context/CartVisibilityContext'
 import { useSideSheet } from 'hooks'
 import Cart from 'components/Cart/Cart'
+import Footer from 'components/Footer'
 interface Props {
     children: React.ReactElement
+    showNav: boolean
+    showFooter: boolean
 }
 
 const theme = {
@@ -21,32 +24,31 @@ const theme = {
 
 }
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, showNav = true, showFooter = true }: Props) => {
 
-    const { WrappedComponent, toggleVisible, isVisible } = useSideSheet(Cart)
+    const { WrappedComponent: CartSideSheet, toggleVisible, isVisible } = useSideSheet(Cart)
     const cartContextValue = { setCartVisibility: (visible: boolean) => toggleVisible(visible, {}), value: isVisible }
-    // useEffect(() => { })
+
     return <ThemeProvider value={theme}>
-        <WrappedComponent />
+        <CartSideSheet />
         <CartVisibilityContext.Provider value={cartContextValue}>
-
-            <Pane maxWidth={1200} margin='auto'>
-
-                <NavBar />
+            <Pane display='flex' flexDirection='column' height='100%' maxWidth={1200} margin='auto'>
+                {showNav && <Pane marginBottom={majorScale(6)}>
+                    <NavBar user={{ name: 'Shaplist Official' }} />
+                </Pane>
+                }
                 <Pane
-                    marginTop={majorScale(6)} paddingX={'2vw'}
+                    flex='1 0 auto'
+                    paddingX={'2vw'}
                 >
                     {children}
                 </Pane>
+                <Pane flexShrink={0}>
+                    {showFooter && <Footer />}
+                </Pane>
             </Pane>
         </CartVisibilityContext.Provider>
-        <style jsx global>
-            {`
-            body {
-                background: ${BACKGROUND}
-            }
-            `}
-        </style>
+
     </ThemeProvider>
 }
 

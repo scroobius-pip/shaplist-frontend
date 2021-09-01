@@ -42,3 +42,7 @@ interface CartItem {
     epochExpiry?: number
     quantity: number
 }
+
+interface User {
+    name: string
+}

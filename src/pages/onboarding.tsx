@@ -59,4 +59,7 @@ const Page = () => {
     </>
 }
 
+Page.showNav = false
+Page.showFooter = false
+
 export default Page

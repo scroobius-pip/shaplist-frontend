@@ -105,5 +105,5 @@ const Page = () => {
         </style>
     </Pane>
 }
-
+Page.showNav = true
 export default Page

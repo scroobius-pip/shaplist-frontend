@@ -40,5 +40,7 @@ body {
         </style>
     </>
 }
+Page.showNav = false
+Page.showFooter = false
 
 export default Page
